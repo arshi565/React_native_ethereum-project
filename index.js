@@ -9,11 +9,22 @@ export default function App() {
   // Set up a provider for interacting with the Ethereum blockchain
   const provider = new ethers.providers.JsonRpcProvider('https://rinkeby.infura.io/v3/your-project-id');
 
-  // Get the user's account address (assuming they are using MetaMask or some other wallet provider)
-  const signer = provider.getSigner();
-  const address = await signer.getAddress();
+// Get the user's account address (assuming they are using MetaMask or some other wallet provider)
+const signer = provider.getSigner();
 
-  const sendTransaction = async () => {
+// Define an async function to get the address
+async function getAddress() {
+  const address = await signer.getAddress();
+  return address;
+}
+
+// Call the async function to get the address
+getAddress().then((address) => {
+  console.log('Address:', address);
+}).catch((error) => {
+  console.error('Error getting address:', error);
+});
+
     // Send Ether to the specified address
     const tx = {
       to: toAddress,
