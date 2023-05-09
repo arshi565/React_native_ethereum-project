@@ -1,0 +1,28 @@
+import { ethers } from 'ethers';
+
+// Set up a provider for interacting with the Ethereum blockchain
+const provider = new ethers.providers.JsonRpcProvider('https://rinkeby.infura.io/v3/your-project-id');
+
+// Get the user's account address (assuming they are using MetaMask or some other wallet provider)
+const signer = provider.getSigner();
+const address = await signer.getAddress();
+
+// Send Ether to a specified address
+const sendEther = async (toAddress, value) => {
+  const tx = {
+    to: toAddress,
+    value: ethers.utils.parseEther(value),
+    gasLimit: 21000,
+    gasPrice: ethers.utils.parseUnits('10', 'gwei'),
+  };
+  
+  // Send the transaction
+  const response = await signer.sendTransaction(tx);
+
+  // Get the transaction hash and wait for it to be confirmed
+  const txHash = response.hash;
+  const receipt = await provider.waitForTransaction(txHash);
+
+  // Log the transaction receipt
+  console.log(receipt);
+};
