@@ -1,0 +1,3 @@
+import { JsonRpcProvider } from 'ethers/providers';
+
+const provider = new JsonRpcProvider('YOUR_PROVIDER_URL');
