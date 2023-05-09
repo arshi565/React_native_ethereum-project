@@ -34,12 +34,34 @@ getAddress().then((address) => {
     };
     
     try {
-      // Send the transaction
-      const response = await signer.sendTransaction(tx);
+      const sendTransaction = async () => {
+  // Get the user's account address (assuming they are using MetaMask or some other wallet provider)
+  const signer = provider.getSigner();
+  const address = await signer.getAddress();
 
-      // Get the transaction hash and wait for it to be confirmed
-      const txHash = response.hash;
-      const receipt = await provider.waitForTransaction(txHash);
+  // Build the transaction object
+  const tx = {
+    to: toAddress,
+    value: ethers.utils.parseEther(trnx),
+    gasLimit: 21000,
+    gasPrice: ethers.utils.parseUnits("20", "gwei")
+  };
+
+  try {
+    // Send the transaction
+    const response = await signer.sendTransaction(tx);
+
+    // Get the transaction hash and wait for it to be confirmed
+    const txHash = response.hash;
+    const receipt = await provider.getTransactionReceipt(txHash);
+
+    console.log(`Transaction confirmed: ${txHash}`);
+    console.log(`Gas used: ${receipt.gasUsed.toString()}`);
+  } catch (error) {
+    console.error('Error sending transaction:', error.message);
+  }
+};
+
 
       // Log the transaction receipt
       console.log(receipt);
