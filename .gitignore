@@ -1,0 +1,43 @@
+# Xcode
+.DS_Store
+*/build/
+DerivedData/
+*.pbxuser
+*.xcworkspace
+xcuserdata/
+
+# Android Studio
+.idea/
+*.iml
+*.iws
+*.ipr
+local.properties
+
+# Expo CLI
+node_modules
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+build/
+
+# React Native
+**/ios/Pods/
+**/ios/Podfile.lock
+**/android/.gradle/
+**/android/build/
+**/android/local.properties
+**/android/app/build/
+**/android/app/gradle.build
+**/android/gradle.wrapper/
+**/android/gradle/
+**/ios/Build/
+**/ios/Pods/
+
+# Miscellaneous
+logs/
+*.log
