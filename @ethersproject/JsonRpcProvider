@@ -1,0 +1,15 @@
+import { ethers } from 'ethers';
+
+// Set up a provider for interacting with the Ethereum blockchain
+const provider = new ethers.providers.JsonRpcProvider('https://rinkeby.infura.io/v3/your-project-id');
+
+// Get the user's account address (assuming they are using MetaMask or some other wallet provider)
+const signer = provider.getSigner();
+const address = await signer.getAddress();
+
+// Get the user's Ether balance
+const etherBalance = await provider.getBalance(address);
+const formattedBalance = ethers.utils.formatEther(etherBalance);
+
+console.log(`Your address: ${address}`);
+console.log(`Your balance: ${formattedBalance} ETH`);
